@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Profile</title>
+    <style>
+        body { font-family: Arial; background: #eef2f3; padding: 40px; }
+        .card { background: white; padding: 20px; max-width: 600px; margin: auto;
+                border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        h2 { text-align: center; margin-bottom: 20px; }
+        .info { margin-bottom: 20px; }
+        .info p { font-size: 18px; }
+        .score-box {
+            background: #007bff; color: white;
+            padding: 15px; border-radius: 10px;
+            text-align: center; font-size: 22px;
+        }
+        table { width: 100%; margin-top: 20px; border-collapse: collapse; }
+        table th, table td { padding: 10px; border-bottom: 1px solid #ccc; }
+        .logout-btn {
+            margin-top: 20px; display: block; padding: 12px;
+            text-align: center; background: #ff4d4d; color: white;
+            text-decoration: none; border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Employee Profile</h2>
+
+    <div class="info">
+        <p><strong>Name:</strong> {{ employee.user.first_name }}</p>
+        <p><strong>Employee ID:</strong> {{ employee.emp_id }}</p>
+        <p><strong>Company:</strong> {{ employee.company }}</p>
+        <p><strong>Position:</strong> {{ employee.position }}</p>
+    </div>
+
+    <div class="score-box">
+        Score: {{ employee.score }}
+    </div>
+
+    <h3>Score History</h3>
+    <table>
+        <tr>
+            <th>Score</th>
+            <th>Description</th>
+            <th>Date</th>
+        </tr>
+
+        {% for h in history %}
+        <tr>
+            <td>+{{ h.score_added }}</td>
+            <td>{{ h.description }}</td>
+            <td>{{ h.timestamp }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="3">No score updates yet.</td></tr>
+        {% endfor %}
+    </table>
+
+    {% if employee.position != "Employee" %}
+    <a href="/add-score/" 
+       style="display:block;margin-top:20px;background:#28a745;padding:12px;color:white;text-align:center;border-radius:5px;text-decoration:none;">
+        Add Score to Other Employee
+    </a>
+    {% endif %}
+
+
+    <a href="/logout/" class="logout-btn">Logout</a>
+</div>
+
+</body>
+</html>
