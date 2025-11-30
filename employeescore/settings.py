@@ -4,7 +4,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-z7bf=*p_cte(l6g#0ka2w-qlsq)t@nj*rjagv%*8q+f+f86qam'
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]   # for dev, allow all. Important for ngrok & hosting.
 
